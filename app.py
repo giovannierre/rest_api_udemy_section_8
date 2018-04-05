@@ -1,4 +1,4 @@
-import os # questo serve per Cloud9
+import os # questo serve per Cloud9 o per Heroku
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -11,7 +11,7 @@ from resources.store import Store, StoreList
 app = Flask(__name__)
 
 # dico a SQLAlchemy qual è il database a cui fare riferimento
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 
 # La riga seguente si mette per disattivare il tracking della
 # estensione di SQLAlchemy per flask, ma rimane comunque un
