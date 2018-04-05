@@ -22,10 +22,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'my_super_secret_key'
 api = Api(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all() # crea tutte le tabelle solo se non esistono già
-
 jwt = JWT(app, authenticate, identity) # /auth 
 # JWT crea automaticamente l'end-point '/auth'
 # senza bisogno di definirlo in modo esplicito
